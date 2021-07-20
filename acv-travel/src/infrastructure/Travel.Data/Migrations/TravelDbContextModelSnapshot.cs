@@ -7,7 +7,7 @@ using Travel.Data.Contexts;
 
 namespace Travel.Data.Migrations
 {
-    [DbContext(typeof(TravelDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     partial class TravelDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -15,7 +15,7 @@ namespace Travel.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.8")
+                .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Travel.Domain.Entities.TourList", b =>
@@ -80,7 +80,7 @@ namespace Travel.Data.Migrations
             modelBuilder.Entity("Travel.Domain.Entities.TourPackage", b =>
                 {
                     b.HasOne("Travel.Domain.Entities.TourList", "List")
-                        .WithMany("Tours")
+                        .WithMany("TourPackages")
                         .HasForeignKey("ListId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -90,7 +90,7 @@ namespace Travel.Data.Migrations
 
             modelBuilder.Entity("Travel.Domain.Entities.TourList", b =>
                 {
-                    b.Navigation("Tours");
+                    b.Navigation("TourPackages");
                 });
 #pragma warning restore 612, 618
         }

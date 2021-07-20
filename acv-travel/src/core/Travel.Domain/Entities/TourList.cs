@@ -4,7 +4,12 @@ namespace Travel.Domain.Entities
 {
     public class TourList
     {
-        public IList<TourPackage> Tours { get; set; } = new List<TourPackage>();
+        public TourList()
+        {
+            TourPackages = new List<TourPackage>();
+        }
+
+        public IList<TourPackage> TourPackages { get; set; }
         public int Id { get; set; }
         public string City { get; set; }
         public string Country { get; set; }

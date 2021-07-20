@@ -127,7 +127,7 @@ You can see the record type after the public access modifier.
 Clean architecture is a principle of organizing software architecture to keep developers away from the difficult refactoring of the application in the future. Clean architecture helps you build a service for a specific domain model that prepares it for microservice architecture.
 
 | <img src="https://1.bp.blogspot.com/-HXPcinc-2Qg/YPXv8EkM8OI/AAAAAAAADOw/l1526dXa9f4EHay8ioawkhRzZWG4XYPwwCLcBGAsYHQ/s0/Clean%2Barchitecture%2Bdiagram.png" alt="Clean architecture diagram" style="zoom:25%;" /> | <img src="https://1.bp.blogspot.com/-0FNfMMKEozA/YPXyQtpfjZI/AAAAAAAADO4/E2jAB_qy-RMdEdAbLgwcxMLcwC2iVRz4gCLcBGAsYHQ/s0/A%2Bflat%2Bdiagram%2Bof%2Bclean%2Barchitecture.png" style="zoom: 50%;" /> |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
 
 In clean architecture, two layers must be the core or center of the structure. These layers are the domain layer, which contains most of your entities, enums, and settings. The application layer keeps most of your Data Transfer Objects (DTOs), interfaces, mappings, exceptions, behaviors, and business logic.
 
@@ -184,4 +184,27 @@ A Unit test project tests small and specific parts of your code. This project ca
 ##### Integration test – project
 
 An Integration test project tests whether the components are working together. This project can be created using an XUnit, NUnit, or MSTest project.
+
+## CQRS (Command and Query Responsibility Segregation)
+
+The pattern would be an ideal candidate for how to separate all the requests for reading and all the requests for modifying data.
+
+Everything in the controller that gets data or does not mutate data falls under Query; while everything else that mutates data, such as POST, PUT, and DELETE requests, is classified as Command.
+
+<img src="https://1.bp.blogspot.com/-YskP1PgI1KQ/YPbCELNuabI/AAAAAAAADPA/PmS4tyxnv_EiPqErj0CSY_Tnnq1TjSFQACLcBGAsYHQ/s0/A%2Bcontroller%2Bsending%2Ba%2Bcommand.png" alt="A controller sending a command" style="zoom: 25%; float:left;" />
+
+A controller sending a command
+
+The ultimate goal is to bring a GET request and have a post, like in the preceding figure, to end up in a mediator. This mediator will find a query handler and a command handler to handle the requests, and through that, the controller won't need to know if any service is injected into handlers.
+The design makes the application more manageable and way more testable because you can unit test the handlers isolated from the whole controller. After all, there is nothing in the controller. The controller just has a query sent to the mediator and eventually lands in a handler, but it's a very decoupled approach and remarkably predictable for your application.
+
+### What Is The Mediator Pattern?
+
+Instead of services, objects, or elements calling each other, we will put a mediator in the middle. The mediator acts like an airport traffic control tower that knows how we want our services to communicate with each other.
+
+| <img src="https://1.bp.blogspot.com/-e3NyxU-BK50/YPbDRLqxZRI/AAAAAAAADPM/MvodKSt9SqMWPw7jSA4qVX_JFXFW77oZgCLcBGAsYHQ/s0/Mediator%2Bas%2Ba%2Btraffic%2Bcontrol%2Btower.png" alt="Mediator as a traffic control tower" style="zoom:25%;" /> | <img src="https://1.bp.blogspot.com/-ltBHJk_GGlo/YPbD_DiL0WI/AAAAAAAADPY/YtFPsfc1pLMAevIy7e4JwQSs9NyRjWMIQCLcBGAsYHQ/s0/MediatR%2Bis%2Ban%2Bimplementation%2Bof%2Bthe%2Bmediator%2Bpattern.png" alt="MediatR is an implementation of the mediator pattern" style="zoom:25%;" /> |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|             Mediator as a traffic control tower              |     MediatR is an implementation of the mediator pattern     |
+
+All your controllers will only have a single dependency, which is the MediatR package. Each one of your actions will just call a method, Mediator.send, and return a result, making your controllers slimmer than writing it without the CQRS pattern.
 
