@@ -1,3 +1,9 @@
+## Todo
+
+<img src="https://1.bp.blogspot.com/-uLhCw70iJ6c/YPdhdWYGPsI/AAAAAAAADPw/8hbpB5Kp78w5AIyaZmrog_wDBSDu_DcgQCLcBGAsYHQ/s0/vue-js-todo-app.png" style="zoom: 50%; float: left;" />
+
+[Todo (vue-todo-app0.herokuapp.com)](https://vue-todo-app0.herokuapp.com/)
+
 [TOC]
 
 ## What's new in Vue.js 3?
@@ -7,6 +13,10 @@
 - Smaller: Vue.js has tree shaking; tree shaking is a method to remove unused libraries from the project automatically. This capability is essential to make the file size smaller than the previous version. Vue.js 3 also has some compile-time flags that allow you to drop things that cannot automatically be tree-shaken.
 - Scales better: Vue.js now provides the Composition API, an easier way to reuse a segment of Vue.js component logic. The Composition API is an exciting new feature that solves complex use cases such as sharing business logic between components.
 - A better developer experience: For me, Vue.js already provided unparalleled developer experience, but Vue.js has improved it in Vue.js 3 (by introducing the new single-file component improvements, type checking for template expressions, and props of sub-components).
+
+[Vue-Essentials-Cheat-Sheet.pdf (vuemastery.com)](https://www.vuemastery.com/pdf/Vue-Essentials-Cheat-Sheet.pdf)
+
+[Vue.js cheatsheet (devhints.io)](https://devhints.io/vue)
 
 ## What's new in ASP.NET Core?
 
