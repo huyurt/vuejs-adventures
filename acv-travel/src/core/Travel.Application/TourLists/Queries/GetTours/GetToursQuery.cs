@@ -3,10 +3,7 @@ using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
-using Newtonsoft.Json;
-using System;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Travel.Application.Common.Interfaces;
@@ -31,6 +28,21 @@ namespace Travel.Application.TourLists.Queries.GetTours
             _distributedCache = distributedCache;
         }
 
+        public async Task<ToursVm> Handle(GetToursQuery request, CancellationToken cancellationToken)
+        {
+            ToursVm tourLists;
+        
+            tourLists = new ToursVm
+            {
+                Lists = await _context.TourLists
+                    .ProjectTo<TourListDto>(_mapper.ConfigurationProvider)
+                    .OrderBy(t => t.City)
+                    .ToListAsync(cancellationToken)
+            };
+        
+            return tourLists;
+        }
+        /*
         public async Task<ToursVm> Handle(GetToursQuery request, CancellationToken cancellationToken)
         {
             const string cacheKey = "GetTours";
@@ -63,5 +75,6 @@ namespace Travel.Application.TourLists.Queries.GetTours
 
             return tourLists;
         }
+        */
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Travel.Data.Migrations
 {
@@ -10,11 +11,11 @@ namespace Travel.Data.Migrations
                 name: "TourLists",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    City = table.Column<string>(type: "TEXT", nullable: true),
-                    Country = table.Column<string>(type: "TEXT", nullable: true),
-                    About = table.Column<string>(type: "TEXT", nullable: true)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    City = table.Column<string>(type: "text", nullable: true),
+                    Country = table.Column<string>(type: "text", nullable: true),
+                    About = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -25,16 +26,16 @@ namespace Travel.Data.Migrations
                 name: "TourPackages",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    ListId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    WhatToExpect = table.Column<string>(type: "TEXT", nullable: true),
-                    MapLocation = table.Column<string>(type: "TEXT", nullable: true),
-                    Price = table.Column<float>(type: "REAL", nullable: false),
-                    Duration = table.Column<int>(type: "INTEGER", nullable: false),
-                    InstantConfirmation = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Currency = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ListId = table.Column<int>(type: "integer", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    WhatToExpect = table.Column<string>(type: "text", nullable: true),
+                    MapLocation = table.Column<string>(type: "text", nullable: true),
+                    Price = table.Column<float>(type: "real", nullable: false),
+                    Duration = table.Column<int>(type: "integer", nullable: false),
+                    InstantConfirmation = table.Column<bool>(type: "boolean", nullable: false),
+                    Currency = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {

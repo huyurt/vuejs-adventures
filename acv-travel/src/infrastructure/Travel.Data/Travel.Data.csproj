@@ -2,12 +2,17 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.7" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.7" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\core\Travel.Domain\Travel.Domain.csproj" />
     <ProjectReference Include="..\..\core\Travel.Application\Travel.Application.csproj" />
     <ProjectReference Include="..\Travel.Shared\Travel.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations" />
   </ItemGroup>
 
   <PropertyGroup>

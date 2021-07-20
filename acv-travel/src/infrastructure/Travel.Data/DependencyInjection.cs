@@ -11,7 +11,7 @@ namespace Travel.Data
         public static IServiceCollection AddInfrastructureData(this IServiceCollection services, IConfiguration config)
         {
             services.AddDbContext<ApplicationDbContext>(options => options
-                .UseSqlServer(config.GetConnectionString("TravelContext")));
+                .UseNpgsql(config.GetConnectionString("TravelContext")));
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 

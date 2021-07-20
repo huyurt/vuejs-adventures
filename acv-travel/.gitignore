@@ -343,3 +343,6 @@ healthchecksdb
 .idea
 .vs
 .vscode
+
+# Logs
+**/Logs/

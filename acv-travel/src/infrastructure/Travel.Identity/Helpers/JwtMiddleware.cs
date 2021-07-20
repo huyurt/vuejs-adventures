@@ -36,7 +36,7 @@ namespace Travel.Identity.Helpers
             try
             {
                 var tokenHandler = new JwtSecurityTokenHandler();
-                byte[] key = Encoding.ASCII.GetBytes(_authSettings.Secret);
+                byte[] key = Encoding.UTF8.GetBytes(_authSettings.Secret);
                 tokenHandler.ValidateToken(token, new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,

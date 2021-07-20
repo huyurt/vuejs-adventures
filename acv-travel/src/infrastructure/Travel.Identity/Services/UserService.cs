@@ -47,7 +47,7 @@ namespace Travel.Identity.Services
 
         private string GenerateJwtToken(User user)
         {
-            byte[] key = Encoding.ASCII.GetBytes(_authSettings.Secret);
+            byte[] key = Encoding.UTF8.GetBytes(_authSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[]
