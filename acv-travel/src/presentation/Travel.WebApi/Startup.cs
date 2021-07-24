@@ -15,6 +15,7 @@ using Travel.Shared;
 using Travel.WebApi.Extensions;
 using Travel.WebApi.Filters;
 using Travel.WebApi.Helpers;
+using VueCliMiddleware;
 
 namespace Travel.WebApi
 {
@@ -48,6 +49,11 @@ namespace Travel.WebApi
             services.AddSwaggerGenExtension();
 
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+
+            // NOTE: PRODUCTION Ensure this is the same path that is specified in your webpack output
+            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "../vue-app/dist"; });
+
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,12 +64,42 @@ namespace Travel.WebApi
                 app.UseDeveloperExceptionPage();
                 app.UseSwaggerExtension(provider);
             }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
+            
+            app.UseStaticFiles();
+            if (!env.IsDevelopment())
+            {
+                app.UseSpaStaticFiles();
+            }
+
+            app.UseCors(b =>
+            {
+                b.AllowAnyOrigin();
+                b.AllowAnyHeader();
+                b.AllowAnyMethod();
+            });
 
             app.UseHttpsRedirection();
+
             app.UseRouting();
             app.UseMiddleware<JwtMiddleware>();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "../vue-app";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseVueCli(npmScript: "serve");
+                }
+            });
         }
     }
 }
