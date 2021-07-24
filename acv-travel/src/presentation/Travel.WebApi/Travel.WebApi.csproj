@@ -54,6 +54,39 @@
         <Content Remove="$(SpaRoot)**" />
         <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+        <None Update="..\vue-app\src\api\api-v1-config.ts">
+          <Link>src\api\api-v1-config.ts</Link>
+        </None>
+        <None Update="..\vue-app\src\api\api-v2-config.ts">
+          <Link>src\api\api-v2-config.ts</Link>
+        </None>
+        <None Update="..\vue-app\src\api\weather-forecast-services.ts">
+          <Link>src\api\weather-forecast-services.ts</Link>
+        </None>
+        <None Update="..\vue-app\src\store\tour\services.ts">
+          <Link>src\store\tour\services.ts</Link>
+        </None>
+        <None Update="..\vue-app\src\store\tour\types.ts">
+          <Link>src\store\tour\types.ts</Link>
+        </None>
+        <None Update="..\vue-app\src\store\tour\actions.ts">
+          <Link>src\store\tour\actions.ts</Link>
+        </None>
+        <None Update="..\vue-app\src\store\tour\state.ts">
+          <Link>src\store\tour\state.ts</Link>
+        </None>
+        <None Update="..\vue-app\src\store\tour\mutations.ts">
+          <Link>src\store\tour\mutations.ts</Link>
+        </None>
+        <None Update="..\vue-app\src\store\tour\getters.ts">
+          <Link>src\store\tour\getters.ts</Link>
+        </None>
+        <None Update="..\vue-app\src\store\tour\index.ts">
+          <Link>src\store\tour\index.ts</Link>
+        </None>
+        <None Update="..\vue-app\src\components\TourListsCard.vue">
+          <Link>src\components\TourListsCard.vue</Link>
+        </None>
     </ItemGroup>
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
         <!-- Ensure Node.js is installed -->
@@ -72,7 +105,7 @@
         <ItemGroup>
             <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
             <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
-            <ResolvedFileToPublish Include="@(DistFiles-&gt;'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+            <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
                 <RelativePath>%(DistFiles.Identity)</RelativePath>
                 <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
                 <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
